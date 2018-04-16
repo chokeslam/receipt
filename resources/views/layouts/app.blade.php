@@ -48,7 +48,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">{{ __('收據管理') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin') }}">{{ __('收據管理') }}</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
