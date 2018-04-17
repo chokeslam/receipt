@@ -2,7 +2,7 @@
 
 namespace App\Appclass;
 
-class Receiptdata{
+class CreateReceiptdata{
 	
 	protected $place;
 	protected $firstnumber;
@@ -37,4 +37,5 @@ class Receiptdata{
 		}
 		return $numberarray;
 	}
+
 }

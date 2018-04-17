@@ -10,10 +10,10 @@
 							<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="form-group row">
 									<label for="name" class="col-sm-2 col-form-label text-md-right">{{ __('新增收據:') }}</label>
-										<select  name="place" required>
-											<option value="">請選擇</option>
-											<option value="B">台北(B)</option>
-											<option value="C">中壢(C)</option>
+										<select class="form-control col-sm-2" required>
+											<option value="">{{ __('請選擇') }}</option>
+											<option value="B">{{ __('台北(B)') }}</option>
+											<option value="C">{{ __('中壢(C)') }}</option>
 										</select>
 									<div class="col-md-3"  id="name">
 
@@ -28,6 +28,17 @@
 									<button type="submit" class="btn btn-primary">
 										{{ __('新增') }}
  									</button>
+
+								</div>
+								<div class="form-group row">
+									<label for="user" class="col-sm-2 col-form-label text-md-right">{{ __('分派收據:') }}</label>
+										<select class="form-control col-sm-3" required>
+											<option value="">{{ __('請選擇收據') }}</option>
+										@foreach ($query as $value)
+											<option value="{{$value->Name}}">{{$value->Name}}</option>
+										@endforeach
+											
+										</select>
 								</div>
 						</form>
 					</div>
