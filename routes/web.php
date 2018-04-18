@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/index', 'HomeController@index')->name('index');
-Route::get('/admin', 'HomeController@admin')->name('admin');
+Route::get('/index', 'IndexController@index')->name('index');
+Route::get('/admin', 'IndexController@admin')->name('admin');
 
-Route::POST('/create', 'HomeController@create')->name('create');
+Route::POST('/create', 'IndexController@create')->name('create');
+Route::POST('createsales', 'IndexController@createsales')->name('createsales');
+Route::POST('checkuser', 'IndexController@checkuser')->name('checkuser');
+
+Route::get('/index/{Name}', 'IndexController@close')->name('close');
