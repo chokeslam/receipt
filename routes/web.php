@@ -21,7 +21,8 @@ Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/admin', 'IndexController@admin')->name('admin');
 
 Route::POST('/create', 'IndexController@create')->name('create');
-Route::POST('createsales', 'IndexController@createsales')->name('createsales');
-Route::POST('checkuser', 'IndexController@checkuser')->name('checkuser');
+Route::POST('/createsales', 'IndexController@createsales')->name('createsales');
+Route::POST('/checkuser', 'IndexController@checkuser')->name('checkuser');
 
 Route::get('/index/{Name}', 'IndexController@close')->name('close');
+Route::POST('/index/CheckNumbers', 'IndexController@CheckNumbers')->name('CheckNumbers');

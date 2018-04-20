@@ -32,6 +32,7 @@ class ViewData{
 		$NameandUser =$this->GetNameandUser();
 
 		foreach ($NameandUser as $key => $value) {
+
 			$ViewData = array();
 			$query = Receipt::select('Numbers')
 			->where('Name', $value['Name'])
@@ -39,12 +40,15 @@ class ViewData{
 			->get();
 
 			foreach ($query as $val) {
-                        $Numbers = str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
-            array_push($ViewData,$Numbers);
-        }
-        	$NameandUser[$key]['Numbers'] = $ViewData;
+
+				$Numbers = str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
+				array_push($ViewData,$Numbers);
+
+			}
+
+			$NameandUser[$key]['Numbers'] = $ViewData;
+
 		}
-		
 		
 		return $NameandUser;
 	}

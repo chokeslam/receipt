@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Appclass\CreateReceiptdata;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appclass\ViewData;
 use App\Receipt;
 use App\sales;
@@ -33,10 +35,9 @@ class IndexController extends Controller
         ->get();
 
         $ViewData = new ViewData($query);
-
         $ViewData = $ViewData->GetNumbers();
 
-        return view('index', compact('ViewData'));
+        return view('index', compact('ViewData' ,'query'));
     }
 
     public function admin()
@@ -76,9 +77,9 @@ class IndexController extends Controller
 
     public function checkuser(Request $Request)
     {
-        $target = $Request->input('receipt');
-        $value  = $Request->input('sales');
-        Receipt::where('Name', $target)->update(['User'=>$value ,'status'=>'Y']);
+        $Name = $Request->input('receipt');
+        $User  = $Request->input('sales');
+        Receipt::where('Name', $Name)->update(['User'=>$User ,'status'=>'Y']);
 
         return redirect('index');
     }
@@ -89,6 +90,25 @@ class IndexController extends Controller
         Receipt::where('Name', $Name)
         ->where('End_time', '=', Null)
         ->update(['status'=>'C', 'End_time'=>$date]);
+        return redirect('index');
+    }
+
+    public function CheckNumbers(Request $Request)
+    {
+        $Name = $Request->input('Name');
+        $Numbers = $Request->input('Numbers');
+        $date = date('Y-m-d');
+
+        // echo $Name;
+
+        // foreach ($Numbers as $key => $value) {
+        //     echo $value.'<br>';
+        // }
+        foreach ($Numbers as $key => $value) {
+             Receipt::where('Name', $Name)
+            ->where('Numbers', $value)
+            ->update(['status'=>'C', 'End_time'=>$date]);
+        }
         return redirect('index');
     }
 }

@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 </head>
 <body   style="font-family:Microsoft JhengHei;">
     <div id="app">
@@ -71,7 +72,11 @@
             @yield('content')
         </main>
     </div>
+<script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" defer></script>
+
 <script src="{{ asset('js/index.js') }}" defer></script>
 </body>
 </html>
