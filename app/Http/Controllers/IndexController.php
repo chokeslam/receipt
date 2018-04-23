@@ -9,6 +9,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appclass\ViewData;
 use App\Receipt;
 use App\sales;
+use App\Http\Requests\CreateSalesRequest;
+use App\Http\Requests\CreateRequest;
+use App\Http\Requests\CheckUserRequest;
 
 class IndexController extends Controller
 {
@@ -51,7 +54,7 @@ class IndexController extends Controller
         return view('admin', compact('query', 'sales'));
     }
 
-    public function create(Request $Request)
+    public function create(CreateRequest $Request)
     {
          $place = $Request->input('place');
          $firstnumber = $Request->input('firstnumber');
@@ -69,13 +72,13 @@ class IndexController extends Controller
 
          return redirect('admin');
     }
-    public function createsales(Request $Request)
+    public function createsales(CreateSalesRequest $Request)
     {
         sales::create(['Name'=>$Request->input('createsales')]);
         return redirect('admin');
     }
 
-    public function checkuser(Request $Request)
+    public function checkuser(CheckUserRequest $Request)
     {
         $Name = $Request->input('receipt');
         $User  = $Request->input('sales');
