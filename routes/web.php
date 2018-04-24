@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/admin', 'IndexController@admin')->name('admin');
+Route::get('/retrieve', 'IndexController@retrieve')->name('retrieve');
 
 Route::POST('/create', 'IndexController@create')->name('create');
 Route::POST('/createsales', 'IndexController@createsales')->name('createsales');

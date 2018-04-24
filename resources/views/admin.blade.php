@@ -117,5 +117,8 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-md-12" style="text-align: center;">
+			<a class="btn btn-link" role="btn" href="{{url('index')}}">回首頁</a>
+		</div>
 	</div>
 @endsection

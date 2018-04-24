@@ -30,6 +30,10 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*
+     * DB status->   N = 未啟用 , Y = 已啟用 , F=已繳回 , C= 已關閉
+    */
     public function index()
     {
         $query = Receipt::select('Name', 'User')
@@ -38,9 +42,24 @@ class IndexController extends Controller
         ->get();
 
         $ViewData = new ViewData($query);
-        $ViewData = $ViewData->GetNumbers();
+        $ViewData = $ViewData->GetNumbers('Y');
 
         return view('index', compact('ViewData' ,'query'));
+    }
+
+    public function retrieve()
+    {
+        $query = Receipt::select('Name','User','Numbers','End_time')
+        ->where('Status', '=', 'F')
+        ->get();
+
+        foreach ($query as $val) {
+
+            //substr($val->Name,0,-12);
+            $val->Numbers =substr($val->Name,0,-12). str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
+            //echo $val->Numbers;
+        }
+        return view('retrieve', compact('query'));
     }
 
     public function admin()
@@ -110,7 +129,7 @@ class IndexController extends Controller
         foreach ($Numbers as $key => $value) {
              Receipt::where('Name', $Name)
             ->where('Numbers', $value)
-            ->update(['status'=>'C', 'End_time'=>$date]);
+            ->update(['status'=>'F', 'End_time'=>$date]);
         }
         return redirect('index');
     }

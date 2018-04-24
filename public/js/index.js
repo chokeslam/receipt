@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 		dom:'ft<"row justify-content-center"p>',
 
-		"lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+		"lengthMenu": [[10, 20, 25, -1], [10, 20, 25, "All"]],
 
 		"autoWidth": false,
 

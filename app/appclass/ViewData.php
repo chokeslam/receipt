@@ -27,7 +27,7 @@ class ViewData{
 		return $NameandUser;
 	}
 
-	public function GetNumbers(){
+	public function GetNumbers($status){
 
 		$NameandUser =$this->GetNameandUser();
 
@@ -36,7 +36,7 @@ class ViewData{
 			$ViewData = array();
 			$query = Receipt::select('Numbers')
 			->where('Name', $value['Name'])
-			->where('Status', '=', 'Y')
+			->where('Status', '=', $status)
 			->get();
 
 			foreach ($query as $val) {
