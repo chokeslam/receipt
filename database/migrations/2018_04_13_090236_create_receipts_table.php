@@ -19,6 +19,8 @@ class CreateReceiptsTable extends Migration
             $table->string('User')->nullable();
             $table->integer('Numbers')->length(6)->zerofill();
             $table->string('Status');
+            $table->date('Start_time')->nullable();
+            $table->date('PayBack_time')->nullable();
             $table->date('End_time')->nullable();
             $table->timestamps();
         });

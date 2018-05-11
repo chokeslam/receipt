@@ -12,6 +12,7 @@ use App\sales;
 use App\Http\Requests\CreateSalesRequest;
 use App\Http\Requests\CreateRequest;
 use App\Http\Requests\CheckUserRequest;
+use App\Http\Requests\CheckNumbersRequest;
 
 class IndexController extends Controller
 {
@@ -32,13 +33,14 @@ class IndexController extends Controller
      */
 
     /*
-     * DB status->   N = 未啟用 , Y = 已啟用 , F=已繳回 , C= 已關閉
+     * DB status->   N = 未啟用 , Y = 已啟用 , F=已繳回 
     */
     public function index()
     {
         $query = Receipt::select('Name', 'User')
         ->distinct()
         ->where('Status', '=', 'Y')
+        ->where('End_time','=', null)
         ->get();
 
         $ViewData = new ViewData($query);
@@ -47,20 +49,7 @@ class IndexController extends Controller
         return view('index', compact('ViewData' ,'query'));
     }
 
-    public function retrieve()
-    {
-        $query = Receipt::select('Name','User','Numbers','End_time')
-        ->where('Status', '=', 'F')
-        ->get();
 
-        foreach ($query as $val) {
-
-            //substr($val->Name,0,-12);
-            $val->Numbers =substr($val->Name,0,-12). str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
-            //echo $val->Numbers;
-        }
-        return view('retrieve', compact('query'));
-    }
 
     public function admin()
     {
@@ -110,27 +99,47 @@ class IndexController extends Controller
     {
         $date = date('Y-m-d');
         Receipt::where('Name', $Name)
-        ->where('End_time', '=', Null)
-        ->update(['status'=>'C', 'End_time'=>$date]);
+        ->update(['End_time'=>$date]);
         return redirect('index');
     }
 
-    public function CheckNumbers(Request $Request)
+    public function CheckNumbers(CheckNumbersRequest $Request)
     {
         $Name = $Request->input('Name');
         $Numbers = $Request->input('Numbers');
         $date = date('Y-m-d');
-
+        return view('checknumber', compact('Request'));
         // echo $Name;
 
         // foreach ($Numbers as $key => $value) {
         //     echo $value.'<br>';
         // }
-        foreach ($Numbers as $key => $value) {
-             Receipt::where('Name', $Name)
-            ->where('Numbers', $value)
-            ->update(['status'=>'F', 'End_time'=>$date]);
+        // foreach ($Numbers as $key => $value) {
+        //      Receipt::where('Name', $Name)
+        //     ->where('Numbers', $value)
+        //     ->update(['status'=>'F', 'PayBack_time'=>$date]);
+        // }
+        // return redirect('index');
+    }
+    public function Check(Request $Request)
+    {
+        $Name = $Request->input('Name');
+        $Number = $Request->input('Number');
+        $Start = $Request->input('Start');
+        $End = $Request->input('End');
+
+        if (!isset($Start) || empty($Start)) {       
+            // echo json_encode(array('msg' => '請勾選號碼'));
+            return response()->json(array('msg' => '請選取開立時間'));
         }
-        return redirect('index');
+        if (!isset($End) || empty($End)) {       
+            // echo json_encode(array('msg' => '請勾選號碼'));
+            return response()->json(array('msg' => '請選取繳回時間'));
+        }
+        Receipt::where('Name', $Name)
+        ->where('Numbers', $Number)
+        ->update(['status'=>'F','Start_time'=>$Start, 'PayBack_time'=>$End]);
+
+        return response()->json('成功');
     }
 }

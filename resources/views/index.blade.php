@@ -37,11 +37,21 @@
                             </div>
                         </td>
                     </tr>
+
                 	@endforeach
                 </tbody>
             </table>
         </form>
-		{{-- </div> --}}
-{{--         {{ $query->link() }} --}}
+
 	</div>
+    @if($errors->first())
+        <input type="hidden" id='errormsg' value="{{$errors->first()}}" placeholder="">
+    @endif
+@endsection
+
+@section('js')
+
+    @parent
+
+        <script src="{{ asset('js/index.js') }}" defer></script>
 @endsection

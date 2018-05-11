@@ -122,3 +122,10 @@
 		</div>
 	</div>
 @endsection
+
+@section('js')
+
+    @parent
+
+        <script src="{{ asset('js/index.js') }}" defer></script>
+@endsection

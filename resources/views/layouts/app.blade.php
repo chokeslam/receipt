@@ -17,6 +17,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
 </head>
 <body   style="font-family:Microsoft JhengHei;">
     <div id="app">
@@ -40,8 +41,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('登入') }}</a></li>
-                            {{-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> --}}
+{{--                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('登入') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -51,6 +52,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('admin') }}">{{ __('收據管理') }}</a>
                                     <a class="dropdown-item" href="{{ route('retrieve') }}">{{ __('繳回收據列表') }}</a>
+                                    <a class="dropdown-item" href="{{ route('Disabled') }}">{{ __('已關閉收據列表') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -72,11 +74,14 @@
             @yield('content')
         </main>
     </div>
+@section('js')
+
 <script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
 <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
 
-<script src="{{ asset('js/index.js') }}" defer></script>
+@show
 </body>
 </html>

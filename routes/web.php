@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/admin', 'IndexController@admin')->name('admin');
-Route::get('/retrieve', 'IndexController@retrieve')->name('retrieve');
 
 Route::POST('/create', 'IndexController@create')->name('create');
 Route::POST('/createsales', 'IndexController@createsales')->name('createsales');
@@ -27,3 +26,11 @@ Route::POST('/checkuser', 'IndexController@checkuser')->name('checkuser');
 
 Route::get('/index/{Name}', 'IndexController@close')->name('close');
 Route::POST('/index/CheckNumbers', 'IndexController@CheckNumbers')->name('CheckNumbers');
+Route::POST('/index/CheckNumbers/Check', 'IndexController@Check')->name('Check');
+
+
+
+Route::get('/retrieve', 'RetrieveController@retrieve')->name('retrieve');
+Route::POST('/index/RollBack', 'RetrieveController@rollback')->name('RollBack');
+
+Route::get('/Disabled', 'DisabledController@Disabled')->name('Disabled');

@@ -1,22 +1,21 @@
 $(document).ready(function() {
 
-	$('#createsales').click(function(){
-
-		$('form').attr('action','createsales');
-
+	$(function () {
+		$('[data-toggle="popover"]').popover()
 	});
 
-	$('#check').click(function(){
-
-		$('form').attr('action','checkuser');
-
+	$(function () {
+  		$('[data-toggle="tooltip"]').tooltip()
 	});
+	
 	$('.sent').click(function(){
 		$(this).prev().prop("checked", true);
 	});
+
 	if($('#errormsg').val()){
+
 		alert($('#errormsg').val());
-	}
+	}	
 
 	$('#tables').dataTable( {
 
@@ -54,11 +53,12 @@ $(document).ready(function() {
 
 		"columnDefs": [
 
+			{ "width": "10%", "targets": 0 },
 			{ "width": "10%", "targets": 1 },
 			{ "width": "10%", "targets": 3 },
+			
 
 		]
 
 	} );
-	
 });
