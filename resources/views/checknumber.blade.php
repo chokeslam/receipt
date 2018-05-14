@@ -10,15 +10,23 @@
   					</div>
   				</div>
   				<br>
-  				@foreach ($Request['Numbers'] as $element)
+  				
   				<div class="card t" style="margin-bottom: 10px;">
   					<div class="card-body row justify-content-center">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
               <input type="hidden" name="Name" value="{{$Request->Name}}">
-              <label for="Numbers" class="col-sm-1 col-form-label" style="padding-right: 0;">號碼:</label>
-  						<div class="col-sm-2">
-  							<input class="form-control-plaintext" name="Numbers" type="text" value="{{$element}}" readonly>
+              <div class="col-sm-12 row">
+                
+              
+              <div class="col-sm-12" style="padding-right: 0;">號碼:</div>
+              @foreach ($Request['Numbers'] as $element)
+  						<div class="col-sm-1"  style="padding-right: 0;">
+                
+  							<input class="form-control-plaintext text-success" name="Numbers" type="text" value="{{$element}}" readonly>
+                
   						</div>
+              @endforeach
+              </div>
   						<div class="col-sm-3"> 
 							<input class="form-control date start" type="text" placeholder="開立時間" maxlength="10">
 						</div>
@@ -30,7 +38,7 @@
   						</div>			
   					</div>
   				</div>
-  				@endforeach
+  				
 			</div>
 		</div>
 	</div>

@@ -25,8 +25,8 @@ class CreateRequest extends FormRequest
     {
         return [
             'place'       => 'required',
-            'firstnumber' => ['required','regex:/^\d{5}$/'],
-            'lastnumber'  => ['required','regex:/^\d{5}$/']
+            'firstnumber' => ['required','regex:/^\d{6}$/'],
+            'lastnumber'  => ['required','regex:/^\d{6}$/']
         ];
     }
 
@@ -35,9 +35,9 @@ class CreateRequest extends FormRequest
         return [
             'place.required' => '請選擇分班',
             'firstnumber.required' => '起始號碼不可空白',
-            'firstnumber.regex' => '起始號碼為五位數字',
-            'lastnumber.required' => '結束號碼為五位數字',
-            'lastnumber.regex' => '結束號碼為五位數字',
+            'firstnumber.regex' => '起始號碼為六位數字',
+            'lastnumber.required' => '結束號碼不可空白',
+            'lastnumber.regex' => '結束號碼為六位數字',
         ];
     }
 }

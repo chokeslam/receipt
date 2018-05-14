@@ -124,10 +124,12 @@ class IndexController extends Controller
     public function Check(Request $Request)
     {
         $Name = $Request->input('Name');
-        $Number = $Request->input('Number');
+        $Numbers = $Request->input('Numbers');
         $Start = $Request->input('Start');
         $End = $Request->input('End');
 
+        //return response()->json($Numbers);
+        
         if (!isset($Start) || empty($Start)) {       
             // echo json_encode(array('msg' => '請勾選號碼'));
             return response()->json(array('msg' => '請選取開立時間'));
@@ -136,9 +138,11 @@ class IndexController extends Controller
             // echo json_encode(array('msg' => '請勾選號碼'));
             return response()->json(array('msg' => '請選取繳回時間'));
         }
-        Receipt::where('Name', $Name)
-        ->where('Numbers', $Number)
-        ->update(['status'=>'F','Start_time'=>$Start, 'PayBack_time'=>$End]);
+        foreach ($Numbers as $value) {
+            Receipt::where('Name', $Name)
+            ->where('Numbers', $value)
+            ->update(['status'=>'F','Start_time'=>$Start, 'PayBack_time'=>$End]);
+        }
 
         return response()->json('成功');
     }

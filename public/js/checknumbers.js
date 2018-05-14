@@ -12,12 +12,18 @@ $(document).ready(function() {
   	
   	$('.btn').click(function(){
 
-  		
-  		var number = $(this).parent().prevAll().contents('input[name=Numbers]').val();
+  		var numbers = [];
+  		var number = $(this).parent().prevAll().children().contents('input[name=Numbers]');
   		var start = $(this).parent().prevAll().contents('.start').val();
   		var end = $(this).parent().prevAll().contents('.end').val();
 
-  		if(check(start,end,number)==2){
+  		number.each(function() {
+				var val = $(this).val();
+				numbers.push(val);
+  		});
+  		console.log(numbers);
+  		//check(start,end,numbers);
+  		if(check(start,end,numbers)==2){
   			
   			$(this).parent().parent().parent().remove();
   		}
@@ -31,7 +37,7 @@ $(document).ready(function() {
 
   	});
 
-	function check(start,end,number){
+	function check(start,end,numbers){
 		var result = 1;
 		$.ajax({
 					
@@ -46,7 +52,7 @@ $(document).ready(function() {
 
 				Name: $('input[name=Name]').val(),
 
-				Number:number,
+				Numbers:numbers,
 
 				Start:start,
 
