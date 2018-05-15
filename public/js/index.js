@@ -54,6 +54,7 @@ $(document).ready(function() {
 
 		"columnDefs": [
 
+			{ "width": "10%", "targets": 0 },
 			{ "width": "10%", "targets": 1 },
 			{ "width": "10%", "targets": 3 },
 

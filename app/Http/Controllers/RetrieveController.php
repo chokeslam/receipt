@@ -34,7 +34,7 @@ class RetrieveController extends Controller
         
         ->where('Status', '=', 'F')
         ->where('End_time', '=', Null)
-        ->get();
+        ->get()->sort();
 
         $query = Receipt::select('Name','User','End_time')
         ->distinct()
@@ -53,7 +53,7 @@ class RetrieveController extends Controller
         // }
         foreach ($ViewData as $val) {
             
-            $val->Numbers =str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
+            $val->Numbers =str_pad($val->Numbers,6,"0",STR_PAD_LEFT);
         }
         return view('retrieve', compact('query' ,'ViewData'));
         // $query = Receipt::select('Name','User','Numbers','End_time')

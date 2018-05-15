@@ -37,7 +37,7 @@ class ViewData{
 			$query = Receipt::select('Numbers')
 			->where('Name', $value['Name'])
 			->where('Status', '=', $status)
-			->get();
+			->get()->sort();
 
 			foreach ($query as $val) {
 

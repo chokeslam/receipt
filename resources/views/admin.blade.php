@@ -72,6 +72,12 @@
 											<h6>{{'*'.$errors->first('lastnumber')}}</h6>
 										</div>
 									@endif
+									@if (session('msg'))
+										<p>&nbsp &nbsp</p>
+										<div class="col-md-4 text-danger" style="margin-top: 10px;">
+											<h6>{{'*'.session('msg')}}</h6>
+										</div>
+									@endif
 								</div>
 
 

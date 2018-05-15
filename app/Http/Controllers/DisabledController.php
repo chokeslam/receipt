@@ -13,8 +13,8 @@ class DisabledController extends Controller
         $ViewData = Receipt::select('Name', 'User','Numbers','status','Start_time','PayBack_time')
         
         ->where('End_time', '!=', Null)
-        
-        ->get();
+        ->get()
+        ->sort();
 
         $query = Receipt::select('Name','User','End_time')
         ->distinct()

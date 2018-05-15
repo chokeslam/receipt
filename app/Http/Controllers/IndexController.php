@@ -73,6 +73,13 @@ class IndexController extends Controller
          $numberarray = $name->GetArray();
          $name = $name->Getname();
          $status = 'N';
+
+         $Receipt = Receipt::select('Name')->distinct()->where('Name',$name)->value('Name');
+         
+         if (isset($Receipt) || !empty($Receipt)) {
+             return redirect('admin')->with('msg',$name.'已有資料');
+         }
+         
          //存入DB
          foreach ($numberarray as $key => $value) {
             Receipt::create(['Name'=>$name,'Numbers'=>$value,'Status'=>$status]);
