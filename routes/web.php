@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+//receipt route
 Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/admin', 'IndexController@admin')->name('admin');
 

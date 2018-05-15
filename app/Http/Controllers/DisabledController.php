@@ -8,6 +8,21 @@ use App\sales;
 
 class DisabledController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
 	public function disabled()
     {   
         $ViewData = Receipt::select('Name', 'User','Numbers','status','Start_time','PayBack_time')

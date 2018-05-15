@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ __('收據管理') }}</title>
+    <title>{{ __('會計管理') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -25,7 +25,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/index') }}">
                     <img src="{{ URL::asset('images/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
-                    {{ __('收據管理') }}
+                    {{ __('會計管理') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @guest
 
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="receiptDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    收據 {{-- <span class="caret"></span> --}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="receiptDropdown">
+                                    <a class="dropdown-item" href="{{ route('index') }}">{{ __('收據列表') }}</a>
+                                    <a class="dropdown-item" href="{{ route('retrieve') }}">{{ __('繳回收據列表') }}</a>
+                                    <a class="dropdown-item" href="{{ route('Disabled') }}">{{ __('已關閉收據列表') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin') }}">{{ __('收據管理') }}</a>
+                                </div>
+                            </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,9 +64,6 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin') }}">{{ __('收據管理') }}</a>
-                                    <a class="dropdown-item" href="{{ route('retrieve') }}">{{ __('繳回收據列表') }}</a>
-                                    <a class="dropdown-item" href="{{ route('Disabled') }}">{{ __('已關閉收據列表') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
