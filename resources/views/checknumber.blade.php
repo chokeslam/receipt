@@ -20,7 +20,7 @@
               
               <div class="col-sm-12" style="padding-right: 0;">號碼:</div>
               @foreach ($Request['Numbers'] as $element)
-  						<div class="col-sm-1"  style="padding-right: 0;">
+  						<div class="col-sm-2"  style="padding-right: 0;">
                 
   							<input class="form-control-plaintext text-success" name="Numbers" type="text" value="{{$element}}" readonly>
                 

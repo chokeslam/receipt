@@ -41,7 +41,7 @@ class ViewData{
 
 			foreach ($query as $val) {
 
-				$Numbers = str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
+				$Numbers = str_pad($val->Numbers,6,"0",STR_PAD_LEFT);
 				array_push($ViewData,$Numbers);
 
 			}

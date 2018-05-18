@@ -110,6 +110,13 @@ class IndexController extends Controller
         return redirect('index');
     }
 
+    public function delete($Name)
+    {
+        Receipt::where('Name', $Name)
+        ->delete();
+        return redirect('index');
+    }
+
     public function CheckNumbers(CheckNumbersRequest $Request)
     {
         $Name = $Request->input('Name');

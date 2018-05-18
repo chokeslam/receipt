@@ -8,7 +8,7 @@
 				<table class="table table-sm table-fixed" id='tables' style="text-align: center;">
 					<thead>
 						<tr>
-							<th>單號</th>
+							<th>收據</th>
 							<th>使用者</th>
 							<th>單號</th>
 							<th>操作</th>

@@ -38,7 +38,7 @@ class DisabledController extends Controller
 
         foreach ($ViewData as $val) {
             
-            $val->Numbers =str_pad($val->Numbers,5,"0",STR_PAD_LEFT);
+            $val->Numbers =str_pad($val->Numbers,6,"0",STR_PAD_LEFT);
         }
         return view('disabled', compact('query' ,'ViewData'));
     }

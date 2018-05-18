@@ -33,7 +33,12 @@
                             <div>
                                 <input type="checkbox" name="Name" value="{{$value['Name']}}" style="display: none;">
                                 <input class="btn btn-link sent" type="submit" value="確認繳回" >
+                            </div>
+                            <div>
                                 <a href="{{url('index/'.$value['Name'])}}">關閉收據</a>
+                            </div>
+                            <div>
+                                <a href="{{url('delete/'.$value['Name'])}}">刪除收據</a>
                             </div>
                         </td>
                     </tr>
