@@ -39,13 +39,21 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="receiptDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    收據 {{-- <span class="caret"></span> --}}
+                                    收據
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="receiptDropdown">
                                     <a class="dropdown-item" href="{{ route('index') }}">{{ __('收據列表') }}</a>
                                     <a class="dropdown-item" href="{{ route('retrieve') }}">{{ __('繳回收據列表') }}</a>
                                     <a class="dropdown-item" href="{{ route('Disabled') }}">{{ __('已關閉收據列表') }}</a>
                                     <a class="dropdown-item" href="{{ route('admin') }}">{{ __('收據管理') }}</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="performanceDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    招生業績
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="performanceDropdown">
+                                    <a class="dropdown-item" href="{{ route('worksheet') }}">{{ __('業績工作表') }}</a>
                                 </div>
                             </li>
                         @endguest
