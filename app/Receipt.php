@@ -10,5 +10,16 @@ class Receipt extends Model
 	
 	protected	$primaryKey = 'id';
 	
-	protected	$fillable   = ['Name','User','Numbers','Status','End_time'];
+	protected	$fillable   = 
+
+	[
+		'Name',
+		'User',
+		'Numbers',
+		'transactor',
+		'Status',
+		'Start_time',
+		'PayBack_time',
+		'End_time'
+	];
 }

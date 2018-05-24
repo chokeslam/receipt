@@ -30,7 +30,7 @@ class RetrieveController extends Controller
     */
     public function retrieve()
     {   
-        $ViewData = Receipt::select('Name', 'User','Numbers','status','Start_time','PayBack_time')
+        $ViewData = Receipt::select('Name', 'User','Numbers','Transactor','status','Start_time','PayBack_time')
         
         ->where('Status', '=', 'F')
         ->where('End_time', '=', Null)
@@ -76,7 +76,7 @@ class RetrieveController extends Controller
         foreach ($Numbers as $key => $value) {
              Receipt::where('Name', $Name)
             ->where('Numbers', $value)
-            ->update(['status'=>'Y','Start_time'=>Null , 'PayBack_time'=>Null]);
+            ->update(['Transactor'=>Null,'status'=>'Y','Start_time'=>Null , 'PayBack_time'=>Null]);
         }
 
     	return redirect('retrieve');

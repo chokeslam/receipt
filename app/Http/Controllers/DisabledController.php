@@ -25,7 +25,7 @@ class DisabledController extends Controller
      */
 	public function disabled()
     {   
-        $ViewData = Receipt::select('Name', 'User','Numbers','status','Start_time','PayBack_time')
+        $ViewData = Receipt::select('Name', 'User','Numbers','Transactor','status','Start_time','PayBack_time')
         
         ->where('End_time', '!=', Null)
         ->get()

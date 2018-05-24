@@ -36,7 +36,7 @@
                             		</div>
 							
 								@else --}}
-									<div class="form-check form-check-inline">
+									<div class="form-check form-check-inline" style="text-align: left;">
 
 										<input class="check" type="checkbox" name="Numbers[]" value="{{$element->Numbers}}">
 
@@ -45,7 +45,7 @@
 												{{$element->Numbers}}
 
 											</a> --}}
-											<button type="button" class="btn btn-link btn-sm text-dark" data-toggle="tooltip" data-placement="top" data-html="true" title="開立日期:{{$element->Start_time}}<br>繳回日期:{{$element->PayBack_time}}"  style="padding: 0;">
+											<button type="button" class="btn btn-link btn-sm text-dark" data-toggle="tooltip" data-placement="top" data-html="true" title="收據開立人:&nbsp&nbsp&nbsp{{$element->Transactor}}<br>開立日期:{{$element->Start_time}}<br>繳回日期:{{$element->PayBack_time}}"  style="padding: 0;">
   												{{$element->Numbers}}
 											</button>
 									</div>

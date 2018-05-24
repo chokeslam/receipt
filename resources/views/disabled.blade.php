@@ -34,7 +34,7 @@
 												{{$element->Numbers}}
 
 											</a> --}}
-											<button type="button" class="btn btn-link btn-sm text-danger" data-toggle="tooltip" data-placement="top" title="開立日期:  繳回日期:{{$element->PayBack_time}}"  style="padding: 0;">
+											<button type="button" class="btn btn-link btn-sm text-danger" data-toggle="tooltip" data-placement="top" title=""  style="padding: 0;">
   												{{$element->Numbers}}
 											</button>
                             		</div>
@@ -49,7 +49,7 @@
 												{{$element->Numbers}}
 
 											</a> --}}
-											<button type="button" class="btn btn-link btn-sm text-success" data-toggle="tooltip" data-placement="top" data-html="true" title="開立日期: {{$element->Start_time}}<br>繳回日期:{{$element->PayBack_time}}"  style="padding: 0;">
+											<button type="button" class="btn btn-link btn-sm text-success" data-toggle="tooltip" data-placement="top" data-html="true" title="收據開立人:&nbsp&nbsp&nbsp{{$element->Transactor}}<br>開立日期: {{$element->Start_time}}<br>繳回日期:{{$element->PayBack_time}}"  style="padding: 0;">
   												{{$element->Numbers}}
 											</button>
 									</div>
@@ -61,6 +61,7 @@
 							<td>{{$value->End_time}}</td>
 							<td>
 								<input type="checkbox" name="Name" value="{{$value['Name']}}" style="display: none;">
+								<input type="checkbox" name="User" value="{{$value['User']}}" style="display: none;">
                                 <input class="btn btn-link sent" type="submit" value="補繳" >
 							</td>
 						</tr>

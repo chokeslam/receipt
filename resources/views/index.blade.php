@@ -32,6 +32,7 @@
                         <td>
                             <div>
                                 <input type="checkbox" name="Name" value="{{$value['Name']}}" style="display: none;">
+                                <input type="checkbox" name="User" value="{{$value['User']}}" style="display: none;">
                                 <input class="btn btn-link sent" type="submit" value="確認繳回" >
                             </div>
                             <div>

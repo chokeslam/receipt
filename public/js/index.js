@@ -11,8 +11,13 @@ $(document).ready(function() {
 		$('form').attr('action','checkuser');
 
 	});
+	$('#changecheck').click(function(){
+
+		$('form').attr('action','changeuser');
+
+	});
 	$('.sent').click(function(){
-		$(this).prev().prop("checked", true);
+		$(this).prevAll().prop("checked", true);
 	});
 	if($('#errormsg').val()){
 		alert($('#errormsg').val());

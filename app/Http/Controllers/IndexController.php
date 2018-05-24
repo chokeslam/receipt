@@ -13,6 +13,8 @@ use App\Http\Requests\CreateSalesRequest;
 use App\Http\Requests\CreateRequest;
 use App\Http\Requests\CheckUserRequest;
 use App\Http\Requests\CheckNumbersRequest;
+use App\Http\Requests\ChangeUserRequest;
+
 
 class IndexController extends Controller
 {
@@ -49,8 +51,6 @@ class IndexController extends Controller
         return view('index', compact('ViewData' ,'query'));
     }
 
-
-
     public function admin()
     {
         $query = Receipt::select('Name')
@@ -58,8 +58,15 @@ class IndexController extends Controller
         ->where('status','N')
         ->get();
 
+        $ChangeReceipt = Receipt::select('Name')
+        ->distinct()
+        ->where('status','Y')
+        ->where('End_time',Null)
+        ->get();
+
+        //return $ChangeReceipt;
         $sales = sales::select('Name')->get();
-        return view('admin', compact('query', 'sales'));
+        return view('admin', compact('query', 'sales','ChangeReceipt'));
     }
 
     public function create(CreateRequest $Request)
@@ -102,6 +109,17 @@ class IndexController extends Controller
         return redirect('index');
     }
 
+    public function changeuser(ChangeUserRequest $Request)
+    {
+
+        $Name = $Request->input('changereceipt');
+        $User  = $Request->input('changeuser');
+        Receipt::where('Name', $Name)
+        ->update(['User'=>$User]);
+
+        return redirect('index');
+    }
+
     public function close($Name)
     {
         $date = date('Y-m-d');
@@ -119,10 +137,9 @@ class IndexController extends Controller
 
     public function CheckNumbers(CheckNumbersRequest $Request)
     {
-        $Name = $Request->input('Name');
-        $Numbers = $Request->input('Numbers');
-        $date = date('Y-m-d');
-        return view('checknumber', compact('Request'));
+
+        $sales = sales::select('Name')->get();
+        return view('checknumber', compact('Request','sales'));
         // echo $Name;
 
         // foreach ($Numbers as $key => $value) {
@@ -135,13 +152,19 @@ class IndexController extends Controller
         // }
         // return redirect('index');
     }
-    public function Check(Request $Request)
+    public function Check(Request $Request)  //only this use Ajax 
     {
         $Name = $Request->input('Name');
+        $Transactor = $Request->input('Transactor');
         $Numbers = $Request->input('Numbers');
         $Start = $Request->input('Start');
         $End = $Request->input('End');
 
+        if (!isset($Transactor) || empty($Transactor)) {
+
+            $Transactor = $Request->input('User');
+        }
+        //return response()->json($Transactor);
         //return response()->json($Numbers);
         
         if (!isset($Start) || empty($Start)) {       
@@ -155,7 +178,7 @@ class IndexController extends Controller
         foreach ($Numbers as $value) {
             Receipt::where('Name', $Name)
             ->where('Numbers', $value)
-            ->update(['status'=>'F','Start_time'=>$Start, 'PayBack_time'=>$End]);
+            ->update(['Transactor'=>$Transactor,'status'=>'F','Start_time'=>$Start, 'PayBack_time'=>$End]);
         }
 
         return response()->json('成功');

@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 	
 	$('.sent').click(function(){
-		$(this).prev().prop("checked", true);
+		$(this).prevAll().prop("checked", true);
 	});
 
 	if($('#errormsg').val()){

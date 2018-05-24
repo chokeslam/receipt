@@ -52,6 +52,10 @@ $(document).ready(function() {
 
 				Name: $('input[name=Name]').val(),
 
+				User:$('input[name=User]').val(),
+
+				Transactor:$('select[name=Transactor').val(),
+
 				Numbers:numbers,
 
 				Start:start,
