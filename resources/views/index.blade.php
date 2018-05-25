@@ -39,7 +39,8 @@
                                 <a href="{{url('index/'.$value['Name'])}}">關閉收據</a>
                             </div>
                             <div>
-                                <a href="{{url('delete/'.$value['Name'])}}">刪除收據</a>
+                                <input type="hidden" value="{{url('delete/'.$value['Name'])}}">
+                                <button type="button" class="btn btn-link Delete">刪除收據</button>
                             </div>
                         </td>
                     </tr>
@@ -48,7 +49,6 @@
                 </tbody>
             </table>
         </form>
-
 	</div>
     @if($errors->first())
         <input type="hidden" id='errormsg' value="{{$errors->first()}}" placeholder="">
@@ -58,6 +58,6 @@
 @section('js')
 
     @parent
-
+        <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}" defer></script>
         <script src="{{ asset('js/index.js') }}" defer></script>
 @endsection

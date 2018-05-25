@@ -60,9 +60,15 @@
 							</td>
 							<td>{{$value->End_time}}</td>
 							<td>
-								<input type="checkbox" name="Name" value="{{$value['Name']}}" style="display: none;">
-								<input type="checkbox" name="User" value="{{$value['User']}}" style="display: none;">
-                                <input class="btn btn-link sent" type="submit" value="補繳" >
+								<div>
+									<input type="checkbox" name="Name" value="{{$value['Name']}}" style="display: none;">
+									<input type="checkbox" name="User" value="{{$value['User']}}" style="display: none;">
+                                	<input class="btn btn-link sent" type="submit" value="補繳" >
+								</div>
+								<div>
+                                	<input type="hidden" value="{{url('delete/'.$value['Name'])}}">
+                                	<button type="button" class="btn btn-link Delete">刪除收據</button>
+								</div>
 							</td>
 						</tr>
 					@endforeach

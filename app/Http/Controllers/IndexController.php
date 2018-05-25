@@ -132,7 +132,7 @@ class IndexController extends Controller
     {
         Receipt::where('Name', $Name)
         ->delete();
-        return redirect('index');
+        return redirect()->back();
     }
 
     public function CheckNumbers(CheckNumbersRequest $Request)
