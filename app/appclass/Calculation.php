@@ -19,8 +19,9 @@ Class Calculation{
 
 	protected function PersonCalculation(){
 
+		$count =  count($this->Target);
 
-		return count($this->Target); 
+		return  $count;
 	}
 
 	protected function AmountCalculation(){

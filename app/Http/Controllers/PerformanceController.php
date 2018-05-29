@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Performance;
 use App\Appclass\Calculation;
 use App\Appclass\PerformanceClassify;
+use App\Appclass\Condition;
 use App\sales;
 use App\Http\Requests\PerformanceRequest;
 
@@ -61,5 +62,75 @@ class PerformanceController extends Controller
     		'Date'=>$date
     	]);
         return response()->json('成功');
+    }
+    public function Table()
+    {   
+
+        $Request = session()->get('_old_input');
+        $Date = array('Start'=>$Request['Start'],'End'=>$Request['End']);
+        $Date = array_filter($Date);
+
+        $sales = sales::select('Name')->get();
+        // $Target = array('Place'=>$Request['Place'],'Name'=>$Request['Name']);
+        $Place = $Request['Place'];
+        $Name = $Request['Name'];
+
+        // print_r($Request);
+
+        if (!$Date) {
+            $result=null;
+            return view('Performance_Table',compact('result','sales'));
+        }
+
+        if (empty($Date['Start'])) {
+            $Date['Start'] =Performance::min('Date');
+            $Date=array_reverse($Date);
+        }
+        if (empty($Date['End'])) {
+            $Date['End'] =Performance::max('Date');
+
+        }
+
+        $query = Performance::select()
+        ->wherebetween('date',$Date)
+        ->get();
+
+        $condition = new Condition;
+        $Classify = new PerformanceClassify($query);
+        $Calculation = new Calculation;
+        $AllDate = $condition->DateRange($Date);
+        // $condition = $condition->merge();
+        $condition = $condition->Targetmerge($Place,$Name);
+
+
+        // print_r($condition);
+
+        $PersonAndAmount = array();
+        foreach ($condition as $key => $value) {
+
+            $Target = $Classify->Classify($value);
+            array_push($PersonAndAmount,$Calculation->show($Target));
+        }
+
+        $result = $Classify->Restructuring($PersonAndAmount);
+        $AllDate = $Classify->Restructuring($AllDate);
+        $result = array_chunk($result,12);
+
+
+        foreach ($result as $key => $value) {
+            
+            array_unshift($result[$key],$AllDate[$key]);
+        }
+
+        return view('Performance_Table',compact('result','sales'));
+        
+    }
+
+    public function Search(Request $Request)
+    {   
+
+        return redirect()->back()                      
+                         ->withInput($Request->flash());
+                          
     }
 }

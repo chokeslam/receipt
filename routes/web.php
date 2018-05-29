@@ -46,3 +46,5 @@ Route::get('/Disabled', 'DisabledController@Disabled')->name('Disabled');
 //performance
 Route::get('/performance/Worksheet', 'PerformanceController@Worksheet')->name('worksheet');
 Route::POST('/performance/Create', 'PerformanceController@Create')->name('PerformanceCreate');
+Route::get('/performance/Table', 'PerformanceController@Table')->name('PerformanceTable');
+Route::POST('/performance/Search', 'PerformanceController@Search')->name('PerformanceSearch');

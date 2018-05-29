@@ -62,4 +62,17 @@ Class PerformanceClassify{
         }
         return $result;
 	}
+    public function Restructuring( Array $Target)
+    {
+        $result = Array();
+
+        foreach ($Target as $value) {           
+            foreach ($value as $key => $value) {
+
+                $result[]=$value;
+            }
+        }
+        
+        return $result;
+    }
 }
