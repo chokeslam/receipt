@@ -54,6 +54,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="performanceDropdown">
                                     <a class="dropdown-item" href="{{ route('worksheet') }}">{{ __('業績工作表') }}</a>
+                                    <a class="dropdown-item" href="{{ route('PerformanceTable') }}">{{ __('業績查詢') }}</a>
                                 </div>
                             </li>
                         @endguest
