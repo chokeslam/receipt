@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
-	// $('table').each(function(){
-	// 	alert($(this).children('tbody').children().length);
-	// });
+
+	$('.Delete').click(function(){
+
+		var DeleteUrl = $(this).prev('input').val();
+		window.location.href = DeleteUrl;
+	});
+
 	$('input[name=Amount]').keypress(function(){
   		if (event.which === 13){
 

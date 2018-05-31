@@ -198,7 +198,14 @@
 									@if ($element->Class == $i && $element->Status =='1' && $element->Place =='B')
 										<tr>
 											<td>{{$element->Amount}}</td>
-											<td>{{$element->Name}}</td>
+											<td>
+												{{$element->Name}}
+												<input type="hidden" value="{{url('/performance/Delete/'.$element->id)}}">
+												<button type="button" class="close Delete">
+          											<span>&times;</span>
+        										</button>
+
+											</td>
 										</tr>
 									@endif
 								@endforeach
@@ -207,7 +214,13 @@
 									@if ($element->Class == $i && $element->Status =='1' && $element->Place =='C')
 										<tr>
 											<td>{{$element->Amount}}</td>
-											<td>{{$element->Name}}</td>
+											<td>
+												{{$element->Name}}
+												<input type="hidden" value="{{url('/performance/Delete/'.$element->id)}}">
+												<button type="button" class="close Delete">
+          											<span>&times;</span>
+        										</button>
+											</td>
 										</tr>
 									@endif
 								@endforeach
@@ -263,7 +276,13 @@
 									@if ($element->Class == $j && $element->Status =='2' && $element->Place =='B')
 										<tr>
 											<td>{{$element->Amount}}</td>
-											<td>{{$element->Name}}</td>
+											<td>
+												{{$element->Name}}
+												<input type="hidden" value="{{url('/performance/Delete/'.$element->id)}}">
+												<button type="button" class="close Delete">
+          											<span>&times;</span>
+        										</button>
+											</td>
 										</tr>
 									@endif
 								@endforeach
@@ -272,7 +291,13 @@
 									@if ($element->Class == $j && $element->Status =='2' && $element->Place =='C')
 										<tr>
 											<td>{{$element->Amount}}</td>
-											<td>{{$element->Name}}</td>
+											<td>
+												{{$element->Name}}
+												<input type="hidden" value="{{url('/performance/Delete/'.$element->id)}}">
+												<button type="button" class="close Delete">
+          											<span>&times;</span>
+        										</button>
+											</td>
 										</tr>
 									@endif
 								@endforeach

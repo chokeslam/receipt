@@ -63,6 +63,14 @@ class PerformanceController extends Controller
     	]);
         return response()->json('成功');
     }
+
+    public function Delete($id){
+
+        Performance::where('id', $id)
+        ->delete();
+        return redirect()->back();
+    }
+
     public function Table()
     {   
 

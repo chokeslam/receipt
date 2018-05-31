@@ -48,3 +48,4 @@ Route::get('/performance/Worksheet', 'PerformanceController@Worksheet')->name('w
 Route::POST('/performance/Create', 'PerformanceController@Create')->name('PerformanceCreate');
 Route::get('/performance/Table', 'PerformanceController@Table')->name('PerformanceTable');
 Route::POST('/performance/Search', 'PerformanceController@Search')->name('PerformanceSearch');
+Route::get('/performance/Delete/{id}', 'PerformanceController@Delete')->name('PerformanceDelete');
